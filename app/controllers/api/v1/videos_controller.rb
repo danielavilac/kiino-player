@@ -19,6 +19,10 @@ class Api::V1::VideosController < ApplicationController
       "El video #{parse_youtube url} se ha añadido a la lista de reproducción"
   end
 
+  def clear_all
+    Video.delete_all
+  end
+
   private
 
   def verify_token
