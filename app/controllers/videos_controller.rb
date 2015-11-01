@@ -1,5 +1,6 @@
-class VideosController < InheritanceController
+class VideosController < ApplicationController
   def index
-    render plain: 'videos'
+    @video = Video.first
+    Video.first.delete
   end
 end
