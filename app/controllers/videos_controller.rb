@@ -1,3 +1,5 @@
 class VideosController < InheritanceController
-  def index; end
+  def index
+    render plain: 'videos'
+  end
 end
