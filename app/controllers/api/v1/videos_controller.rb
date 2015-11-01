@@ -9,14 +9,13 @@ class Api::V1::VideosController < ApplicationController
     text = params[:text]
     url = text.split(' ').first
 
-    Video.create(
-        url: url,
-        user: user,
-        team: team,
-        channel: channel
-      )
-    render plain:
-      "El video #{parse_youtube url} se ha añadido a la lista de reproducción"
+    if (valid_youtube_url?(url))
+      Video.create(url: url, user: user, team: team, channel: channel)
+      send_message "#{user} agregó un [video](#{url}) a la lista de reproducción"
+      render plain: valid_video(url)
+    elsif
+      render plain: invalid_video(url)
+    end
   end
 
   def clear_all

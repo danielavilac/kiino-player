@@ -1,4 +1,4 @@
-<% if @video.nil? %>
+<% if @video.nil? or !@video.valid_url? %>
   <h3>No hay elementos en la lista de reproducción</h3>
 <% else %>
   <div id="player"></div>
