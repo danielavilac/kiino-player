@@ -13,9 +13,9 @@ class Api::V1::VideosController < ApplicationController
     if (valid_youtube_url?(url))
       Video.create(url: url, user: user, team: team, channel: channel)
       send_message "#{user} agregó un [#{info['title']}](#{url}) a la lista de reproducción"
-      render plain: valid_video(url)
+      render plain: valid_video(user, info['title'])
     else
-      render plain: invalid_video(url)
+      render plain: invalid_video(url, user)
     end
   end
 

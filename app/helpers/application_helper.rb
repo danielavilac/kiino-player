@@ -8,15 +8,15 @@ module ApplicationHelper
      !parse_youtube(url).nil?
   end
 
-  def valid_video user
+  def valid_video user, title
     [
-      "Bien #{user}, se agregó la canción a la fila",
-      "¡Listo!, tu canción es la número #{Video.count} en la fila",
+      "Bien #{user}, se agregó la canción #{title} a la fila",
+      "¡Listo!, tu canción #{title} es la número #{Video.count} en la fila",
       "¡Ya quedó!, sólo espero que no sea reggaeton",
       "Listo #{user}, ya la agregué a la lista, lástima que sólo soy un pedazo de software y no puedo oír la canción",
-      "Tu canción está en la lista, faltan #{Video.count} canciones para la tuya",
+      "Tu canción #{title} está en la lista, faltan #{Video.count} canciones para la tuya",
       "Listo, ya me estoy cansando de este tipo de canciones",
-      "Seguro que quieres poner eso #{user}, ¿bueno quién soy yo para juzgarte?"
+      "¿Seguro que quieres poner #{title} #{user}?, ¿bueno quién soy yo para juzgarte?"
     ].sample
   end
 
