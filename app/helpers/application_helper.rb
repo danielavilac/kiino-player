@@ -53,7 +53,7 @@ module ApplicationHelper
       if (Video.count > 4)
         reminding = "\n*Videos en fila:* #{Video.count}"
       else
-        reminding = "\n:warning: Sólo hay #{Video.count} videos en la fila, agregar vidos con `/music` :warning:"
+        reminding = "\n:warning: Sólo hay #{Video.count} videos en la fila, agregar videos con `/music` :warning:"
       end
       send_message("*Ahora suena:* #{video.info['title']}" +
         "\n*Agregada por:* #{video.user}" + reminding)

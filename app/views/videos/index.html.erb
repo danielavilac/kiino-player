@@ -1,6 +1,12 @@
-<% if @video.nil? or !@video.valid_url? %>
-  <h3>No hay elementos en la lista de reproducción</h3>
-<% else %>
-  <div id="player"></div>
-  <%= render 'player_script' %>
-<% end %>
+<header>
+  <%= image_tag 'bitlab_jukebox.png' %>
+</header>
+<div class="container">
+  <% if @video.nil? or !@video.valid_url? %>
+    <%= render 'empty_list' %>
+  <% else %>
+    <div id="player"></div>
+    <%= render 'next_list' %>
+    <%= render 'player_script' %>
+  <% end %>
+</div>

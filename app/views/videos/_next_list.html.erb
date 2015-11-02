@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Usuario</th>
+      <th>Team</th>
+      <th>Canal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= video.info['title'] %></td>
+        <td><%= video.user %></td>
+        <td><%= video.team %></td>
+        <td><%= video.channel %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
