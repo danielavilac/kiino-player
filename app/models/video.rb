@@ -7,4 +7,8 @@ class Video < ActiveRecord::Base
   def valid_url?
     valid_youtube_url?(self.url)
   end
+
+  def info
+    youtube_information(self.url)
+  end
 end

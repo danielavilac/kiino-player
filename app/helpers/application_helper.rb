@@ -32,12 +32,33 @@ module ApplicationHelper
     ].sample
   end
 
+  def youtube_information yt_url
+    host = "www.youtube.com"
+    params = "/oembed?url=#{yt_url}&format=json"
+    response = Net::HTTP.get_response(host, params)
+    JSON.parse(response.body)
+  end
+
   def send_message message, status='music'
     webhook_url = "https://hooks.slack.com/services/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"
     notifier = Slack::Notifier.new webhook_url,
       channel: '#music',
       username: 'Bitlab Music',
       icon_emoji: ":bitlab_#{status}:"
-    notifier.ping message
+    notifier.ping message if ENV['messages_enabled'] == 'true'
+  end
+
+  def now_playing video
+    if (Video.count > 0)
+      if (Video.count > 4)
+        reminding = "\n*Videos en fila:* #{Video.count}"
+      else
+        reminding = "\n:warning: Sólo hay #{Video.count} videos en la fila, agregar vidos con `/music` :warning:"
+      end
+      send_message("*Ahora suena:* #{video.info['title']}" +
+        "\n*Agregada por:* #{video.user}" + reminding)
+    else
+      send_message(":warning: No hay más videos en la fila :dizzy_face:, agrega más videos con `/music` :warning:", "danger")
+    end
   end
 end

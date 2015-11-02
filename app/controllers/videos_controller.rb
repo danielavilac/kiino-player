@@ -1,6 +1,10 @@
 class VideosController < ApplicationController
+  include ApplicationHelper
   def index
     @video = Video.first
-    Video.first.delete if !@video.nil?
+    now_playing(@video)
+    if !@video.nil?
+      Video.first.delete
+    end
   end
 end
